@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Vue Js Sample</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+           <input v-model="txtName" placeholder="edit me">
+            <span>Message is: {{ txtName }}</span>
+        </p>
+        <p>
+            <textarea v-model="txtarea" placeholder="add multiple lines"></textarea>
+            <span>Multiline message is:</span>
+            <span style="white-space: pre-line;">{{ txtarea }}</span>
+        </p>
+        <p>
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedNames">
+            <label for="john">John</label>
+            <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+            <label for="mike">Mike</label>
+            <br>
+            <span>Checked names: {{ checkedNames }}</span>
+        </p>
+        <p>
+            <input type="radio" id="one" value="One" v-model="picked">
+            <label for="one">One</label>
+            <br>
+            <input type="radio" id="two" value="Two" v-model="picked">
+            <label for="two">Two</label><br/>
+            <span>Picked: {{ picked }}</span>
+        </p>
+        <p>
+            <select v-model="selected">
+                <option disabled value="">Please select one</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <span>Selected: {{ selected }}</span>
+        </p>
+        <p>
+            <select v-model="mulselected" multiple>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <br>
+            <span>Selected: {{ mulselected }}</span>
+        </p>    
+        <p>
+            <select v-model="muldrop">
+                <option v-for="option in options" v-bind:value="option.Id">
+                    {{ option.text }}
+                </option>
+            </select>
+            <span>Selected: {{ muldrop }}</span>
+        </p>
+    </div>
+    <script type="text/javascript">
+
+        var app2 = new Vue({
+            el:'#app',
+            data:{
+                txtName:'',
+                txtarea:'',
+                checkedNames:['John','Mike'],
+                picked:'One',
+                selected:'C',
+                mulselected:['B'],
+                options:[{Id:2,text:'ABC'},{Id:3,text:'ADG'}],
+                muldrop:'2'
+            }
+        });
+        
+    </script>
+
+</body>
+</html>
