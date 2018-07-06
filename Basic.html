@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>Vue Js Sample</title>
+    <style type="text/css">
+        .highlight{
+            background-color: aqua !important;
+            color: brown;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2>Attribute Binding</h2>
+        <span v-bind:title="message">
+            This is example of attribute data binding
+        </span>
+        <h2>Loops</h2> 
+        <span >
+            <ul v-for="item in candidates">
+                <li>
+                    {{item.Name}} - {{item.Email}}
+                </li>
+            </ul>
+        </span>
+        <h2>Conditionals</h2>
+        <span v-if="seen">This content will show</span>
+        <span v-if="hidden">This is hidden content</span>
+        <h2>Events</h2>
+        <p id="hmessage">{{ message }}</p>
+        <button v-on:click="highlightMessage">Change Message Color</button>
+        <h2>Handling User Input</h2>
+        <div id="app-6">
+                <p>{{ inputText }}</p>
+                <input v-model="inputText">
+        </div>
+        <h2>Components</h2>
+        <ol>
+            <todo-item v-for="item in candidates" v-bind:todo="item">
+            </todo-item>
+        </ol>
+        
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.component('todo-item',{
+            props:['todo'],
+            template:'<li>{{todo.Name}}</li>'
+        })
+
+        var app2 = new Vue({
+            el:'#app',
+            data:{
+                message:'This helps us to bind these data to DOM objects',
+                candidates:[
+                    {Id:1,Name :'Deependra1',Email:'deependra.singh+1@hrstop.com'},
+                    {Id:2, Name :'Deependra2',Email:'deependra.singh+2@hrstop.com'},
+                    {Id:3,Name :'Deependra3',Email:'deependra.singh+3@hrstop.com'},
+                    {Id:4,Name :'Deependra4',Email:'deependra.singh+4@hrstop.com'}
+                ],
+                seen:true,
+                hidden:false,
+                inputText:'Try to re-write this'
+            },
+            methods:{
+                highlightMessage:function(){
+                    this.message = 'Now this content highlighted';
+                    document.getElementById('hmessage').setAttribute('class','highlight');
+                }
+            }
+        });
+        
+
+        
+
+
+    </script>
+
+</body>
+
+
+</html>

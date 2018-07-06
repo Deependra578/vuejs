@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Vue Js Sample</title>
+    <style type="text/css">
+        .highlight{
+            background-color: aqua !important;
+            color: brown;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <h2>Computed Getter</h2>
+        <div>This is flat message {{message}}</div>
+        <div>This is reverse message {{reverseMessage}}</div>
+        <h2>Methods</h2>
+        <div>
+           <h4> <i>This is better than Computed Getter properties because computed properties are cached based on dependencies.
+                so if dependecy will change then only changed the cached data, but function will compute immediate.</i>
+            </h4>
+        </div>
+        <div>This is flat message {{message}}</div>
+        <div>This is reverse message {{reverseMess()}}</div>
+        <h2>Watch Property</h2>
+        <h4>{{fullName}}</h4>
+        <button v-on:click="changeName">Click here</button>
+    </div>
+    
+    <script type="text/javascript">
+
+        var app2 = new Vue({
+            el:'#app',
+            data:{
+                message : 'Hello!!',
+                firstName:'Deependra',
+                lastName:'Singh',
+                fullName:'Deependra Singh'
+            },
+            methods:{
+                reverseMess:function(){
+                    return this.message.split('').reverse().join('');
+                },
+                changeName:function(){
+                    this.firstName =this.firstName.split('').reverse().join('');
+                    this.lastName = this.lastName.split('').reverse().join('');
+                }
+            },
+            computed:{
+                reverseMessage:function(){
+                    return this.message.split('').reverse().join('');
+                }
+            },
+            watch:{
+                firstName:function(val){
+                    debugger;
+                    this.fullName = val + ' ' + this.lastName;
+                },
+                lastName:function(val){
+                    this.fullName = this.firstName + ' ' + val;
+                }
+            }
+        });
+        
+
+    </script>
+
+</body>
+
+
+</html>

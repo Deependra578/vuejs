@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Vue Js Sample</title>
+    <style type="text/css">
+        .highlight{
+            background-color: aqua !important;
+            color: brown;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <ul id="namelist">
+            <li v-for="item in candidates">
+                <a href="#">
+                   {{item.Id}} {{item.Name}} - {{item.Email}}
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+
+
+    <script type="text/javascript">
+
+        var app2 = new Vue({
+            el:'#app',
+            data:{
+                candidates:[
+                    {Id:1,Name :'Deependra',Email:'deependra578@gmail.com'},
+                    {Id:2, Name :'Deependra2',Email:'deependra5782@gmail.com'},
+                    {Id:3,Name :'Deependra3',Email:'deependra5783@gmail.com'},
+                    {Id:4,Name :'Deependra4',Email:'deependra5784@gmail.com'}
+                ]
+            },
+            watch:{
+                candidates:function(x){
+                    debugger;
+                    //setTimeout(function(){document.getElementById('namelist').lastChild.setAttribute('class','highlight')},300);
+                    //setTimeout(function(){document.getElementById('namelist').lastChild.removeAttribute('class','')},1000);
+                }
+            },
+            updated:function(){
+                debugger;
+                document.getElementById('namelist').lastChild.setAttribute('class','highlight');
+                setTimeout(function(){document.getElementById('namelist').lastChild.removeAttribute('class','')},1000);
+            }
+
+        });
+        
+        var counter = 4;
+        setInterval(function(){
+            counter = counter + 1;
+            app2.candidates.push({Id:counter,Name :'Deependra',Email:'deependra578@gmail.com'});
+        },5000);
+
+
+
+    </script>
+
+</body>
+
+
+</html>
