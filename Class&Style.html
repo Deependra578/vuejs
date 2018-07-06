@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>Vue Js Sample</title>
+    <style type="text/css">
+        .active{
+            background-color: aqua !important;
+            color: brown;
+        }
+        
+        .hl{
+            text-decoration: blue;
+            font-weight: 900;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2>We can pass an object to v-bind:class to dynamically toggle classes:</h2>
+        <ol id="namelist">
+            <li v-bind:class="{active:isActive,hl:isBold}" v-for="item in candidates">
+                <a href="#">
+                   {{item.Name}}
+                </a>
+            </li>
+        </ol>
+        <h2>Binding Inline Styles</h2>
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">Inline text</div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var app2 = new Vue({
+            el:'#app',
+            data:{
+                candidates:[
+                    {Id:1,Name :'Deependra',Email:'deependra578@gmail.com'},
+                    {Id:2, Name :'Deependra2',Email:'deependra5782@gmail.com'},
+                    {Id:3,Name :'Deependra3',Email:'deependra5783@gmail.com'},
+                    {Id:4,Name :'Deependra4',Email:'deependra5784@gmail.com'}
+                ],
+                isActive:false,
+                isBold:true,
+                activeColor: 'red',
+                fontSize: 30
+            },
+            watch:{
+                candidates:function(x){
+                    debugger;
+                    setTimeout(function(){document.getElementById('namelist').lastChild.setAttribute('class','highlight')},300);
+                    setTimeout(function(){document.getElementById('namelist').lastChild.removeAttribute('class','')},1000);
+                }
+            }
+        });
+        
+    </script>
+
+</body>
+
+
+</html>
