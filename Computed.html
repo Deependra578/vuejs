@@ -26,6 +26,9 @@
         <h2>Watch Property</h2>
         <h4>{{fullName}}</h4>
         <button v-on:click="changeName">Click here</button>
+        <h2>Computed Setter</h4>
+        <h4><i>Computed properties are by default getter-only, but you can also provide a setter when you need it:</i></h4>
+        <span>{{cfullName}}</span>
     </div>
     
     <script type="text/javascript">
@@ -36,7 +39,8 @@
                 message : 'Hello!!',
                 firstName:'Deependra',
                 lastName:'Singh',
-                fullName:'Deependra Singh'
+                fullName:'Deependra Singh',
+                cfullName:'Deependra Singh'
             },
             methods:{
                 reverseMess:function(){
@@ -50,6 +54,16 @@
             computed:{
                 reverseMessage:function(){
                     return this.message.split('').reverse().join('');
+                },
+                cfullName:{
+                    get:function(){
+                        return this.firstName + ' ' + this.lastName; 
+                    },
+                    set:function(newvalue){
+                        var names = newValue.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[names.length - 1]
+                    }
                 }
             },
             watch:{
