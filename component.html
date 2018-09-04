@@ -21,8 +21,16 @@
         </ul>
         
     </div>
-
-
+	<div id="testtickets" v-if="IsVisible">
+	<bbtickets></bbtickets>
+	</div>
+	<template id="tickets">
+        <div>
+          ...
+          The rest of the template goes here followed by the 
+          ...
+        </div>
+     </template>
     <script type="text/javascript">
 
         var app2 = new Vue({
@@ -44,14 +52,22 @@
             }
         });
         
-        var counter = 4;
-        setInterval(function(){
-            counter = counter + 1;
-            app2.candidates.push({Id:counter,Name :'Deependra',Email:'deependra578@gmail.com'});
-        },5000);
+        //var counter = 4;
+        //setInterval(function(){
+           // counter = counter + 1;
+           // app2.candidates.push({Id:counter,Name :'Deependra',Email:'deependra578@gmail.com'});
+        //},5000);
 
+		Vue.component('bbtickets', {
+            template: '#tickets'
+			});
 
-
+			var vm = new Vue({
+				el: '#testtickets',
+				data:{
+					IsVisible : false
+				}
+			});
     </script>
 
 </body>
